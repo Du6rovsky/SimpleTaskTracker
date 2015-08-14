@@ -1,0 +1,13 @@
+doctype html
+html(ng-app="timerApp")
+	head
+		title Time tracking web app
+		meta(charset="utf-8" lang="ru")
+		link(href="/build/css/app.css", rel="stylesheet" type="text/css")
+		link(rel="shortcut icon" href="/build/img/favicon.png" type="image/x-icon")
+		link(rel="icon" href="/build/img/favicon.png" type="image/x-icon")
+	body(ng-controller="mainCtrl")
+		.frame
+			legend Simple task tracking web app
+			div(ng-view)
+			script(src="/build/js/bundle.js")

@@ -1,0 +1,42 @@
+
+<form ng-submit="taskCreate(desc,cost)">
+  <h3>Create a task</h3>
+  <label>Task description :</label>
+  <textarea rows="3" placeholder="Enter the task description" ng-model="desc"></textarea>
+  <label>Cost per hour in rubles:</label>
+  <input type="number" min="1" placeholder="Enter the cost" ng-model="cost" required="required"/>
+  <button type="submit" class="btn">Create</button>
+</form>
+<div class="tasks">
+  <ul class="queue">
+    <h3>Queue of tasks</h3>
+    <li ng-repeat="task in tasks">
+      <label>Task description :</label>
+      <textarea rows="3" ng-model="task.desc"></textarea>
+      <label>Cost per hour :</label>
+      <input type="text" ng-model="task.cost"/>
+      <button ng-click="taskDelete(task.id)" class="btn">Remove</button>
+      <button ng-click="taskInwork(task.id)" class="btn">Get to work</button>
+    </li>
+  </ul>
+  <ul class="work">
+    <h3>Tasks in work</h3>
+    <li ng-repeat="task in tasksInwork" ng-init="timerCheck($index)">
+      <label>Task description :</label>
+      <textarea rows="3" ng-model="task.desc"></textarea>
+      <label>Cost per hour :</label>
+      <input type="text" ng-model="task.cost"/><span>Timer : {{task.time.h}}h {{task.time.m}}m {{task.time.s}}s<br></span><span>Total cost : {{task.total | currency:"RUB "}}<br></span>
+      <button ng-click="timerStart($index)" ng-if="!task.turn &amp;&amp; task.time.counter==0" class="btn">Start</button>
+      <button ng-click="timerStart($index)" ng-if="!task.turn &amp;&amp; task.time.counter&gt;0" class="btn">Resume</button>
+      <button ng-click="timerStop($index)" ng-if="task.turn" class="btn">Stop</button>
+      <button ng-click="timerReset($index)" ng-if="task.time.counter&gt;0" class="btn">Reset</button>
+      <button ng-click="taskComplete(task.id)" ng-if="!task.turn &amp;&amp; task.time.counter&gt;0" class="btn">Done</button>
+    </li>
+  </ul>
+  <ul class="complete">
+    <h3>Completed tasks</h3>
+    <li ng-repeat="task in tasksComplete"><span ng-if="task.desc">Task description :</span>
+      <p>{{task.desc}}</p><span>Cost per hour : RUB {{task.cost}}<br></span><span>Time spent : {{task.time.h}}h {{task.time.m}}m {{task.time.s}}s<br></span><span>Total cost : {{task.total | currency:"RUB "}}</span>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,95 @@
+.frame{
+	width: 100%;
+	margin: 0 auto;
+	legend{
+		text-align: center;
+	}
+	textarea{
+		resize: none;
+	}
+	form{
+		width: 500px;
+		height: 260px;
+		padding: 0px 40px 40px 40px;
+		margin: 0 auto;
+		margin-top: 30px;
+		border: 1px solid rgb(224, 224, 224);
+		border-radius: 5px;
+		textarea, input{
+			width: 97%;
+		}
+		h3{
+			text-align: center;
+		}
+		.btn{
+			margin-top: 20px;
+			float: right;
+		}
+		label{
+			font-weight: 500;
+		}
+
+	}
+	.tasks{
+		width: 1024px;
+		margin: 0 auto;
+		margin-top: 20px;
+		ul{
+			border: 1px solid rgb(224, 224, 224);
+			border-radius: 5px;
+			float: left;
+			width: 300px;
+			padding: 0px;
+
+			&:first-child{
+				margin-right: 60px;
+			}
+			&:last-child{
+				float: right;
+			}
+			h3{
+				text-align: center;
+				margin: 0px;
+				padding: 10px 0px 10px 0px;
+			}
+			li{
+				border: 1px solid rgb(224, 224, 224);
+				float: left;
+				padding: 8px;
+				width: 94%;
+				list-style: none;
+				&:nth-child(even){
+                  background: rgb(255, 255, 255);
+                }
+                &:nth-child(odd){
+                  background: rgb(201, 201, 201);
+                }
+				textarea, input{
+					width: 95%;
+				}
+				p{
+					width: 100%;
+					margin: 0px;
+					padding: 0px;
+					text-align: justify;
+					overflow: hidden;
+				}
+			}
+		}
+		ul.queue{
+			h3{
+				background-color: #337ab7;
+			}
+		}
+		ul.work{
+			h3{
+				background-color: #d9534f;
+			}
+		}
+		ul.complete{
+			h3{
+				background-color: #5cb85c;
+			}
+		}
+	}
+}

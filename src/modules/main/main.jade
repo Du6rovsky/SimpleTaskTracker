@@ -1,0 +1,41 @@
+form(ng-submit="taskCreate(desc,cost)")
+			h3 Create a task
+			label Task description :
+			textarea(rows="3" placeholder="Enter the task description" ng-model="desc")
+			label Cost per hour in rubles:
+			input(type="number" min="1" placeholder="Enter the cost" ng-model="cost" required)
+			button.btn(type="submit") Create
+.tasks
+	ul.queue
+		h3 Queue of tasks
+		li(ng-repeat="task in tasks")
+			label Task description :
+			textarea(rows="3" ng-model="task.desc")
+			label Cost per hour :
+			input(type="text" ng-model="task.cost")
+			button.btn(ng-click="taskDelete(task.id)") Remove
+			button.btn(ng-click="taskInwork(task.id)") Get to work
+
+	ul.work
+		h3 Tasks in work
+		li(ng-repeat="task in tasksInwork" ng-init="timerCheck($index)")
+			label Task description :
+			textarea(rows="3" ng-model="task.desc")
+			label Cost per hour :
+			input(type="text" ng-model="task.cost")
+			span Timer : {{task.time.h}}h {{task.time.m}}m {{task.time.s}}s<br>
+			span Total cost : {{task.total | currency:"RUB "}}<br>
+			button.btn(ng-click="timerStart($index)" ng-if="!task.turn && task.time.counter==0") Start
+			button.btn(ng-click="timerStart($index)" ng-if="!task.turn && task.time.counter>0") Resume
+			button.btn(ng-click="timerStop($index)" ng-if="task.turn") Stop
+			button.btn(ng-click="timerReset($index)" ng-if="task.time.counter>0") Reset
+			button.btn(ng-click="taskComplete(task.id)" ng-if="!task.turn && task.time.counter>0") Done
+
+	ul.complete
+		h3 Completed tasks
+		li(ng-repeat="task in tasksComplete")
+				span(ng-if="task.desc") Task description :
+				p {{task.desc}}
+				span Cost per hour : RUB {{task.cost}}<br>
+				span Time spent : {{task.time.h}}h {{task.time.m}}m {{task.time.s}}s<br>
+				span Total cost : {{task.total | currency:"RUB "}}
