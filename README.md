@@ -8,7 +8,7 @@ Single page task tracker web app(Angularjs,nodejs,gulp,browserify,jade,less,boot
   после чего дождаться установки всех зависимых пакетов
 
 Запуск приложения :
-- В терминале(консоли) перейти в директиву проекта 
+- В терминале(консоли) перейти в директорию проекта 
   и выполнить "node server" - приложение запустится по адресу http://localhost:3003 в production режиме
 
 Либо
